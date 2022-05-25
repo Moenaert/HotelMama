@@ -40,6 +40,7 @@ import org.springframework.jms.support.converter.MessageConverter
 import org.springframework.jms.support.converter.MessageType
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry
+import java.sql.Connection
 
 @SpringBootApplication
 @EnableJms
@@ -62,6 +63,7 @@ open class TodoWebApplication {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
+
             val context = SpringApplication.run(TodoWebApplication::class.java, *args)
             val jmsTemplate = context.getBean(JmsTemplate::class.java)
             println("Sending jms message.")

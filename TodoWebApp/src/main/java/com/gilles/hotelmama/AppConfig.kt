@@ -1,7 +1,4 @@
 package com.gilles.hotelmama
-
-
-
 object AppConfig {
     const val loginPageURL = "/login"
     const val loginPageViewTemplate = "login"
@@ -19,4 +16,6 @@ object AppConfig {
     const val todoCountModelAttributeName = "todoCount"
     const val timerModelAttributeName = "timer"
     const val messageModelAttributeName = "message"
+
+
 }

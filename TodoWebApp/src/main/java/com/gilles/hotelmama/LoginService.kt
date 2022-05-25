@@ -40,6 +40,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry
 
 @Service
 class LoginService {
+
     fun validateUser(user: String, password: String): Boolean {
         return (user == "Gilles" || user == "Stefan") && password == "420"
     }

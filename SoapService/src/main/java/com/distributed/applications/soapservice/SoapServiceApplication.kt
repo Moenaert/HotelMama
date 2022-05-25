@@ -3,6 +3,7 @@ package com.distributed.applications.soapservice
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import kotlin.jvm.JvmStatic
 import org.springframework.boot.SpringApplication
+import java.sql.Connection
 import javax.xml.bind.annotation.XmlAccessorType
 import javax.xml.bind.annotation.XmlAccessType
 import javax.xml.bind.annotation.XmlType
@@ -16,6 +17,7 @@ open class SoapServiceApplication {
         @JvmStatic
         fun main(args: Array<String>) {
             SpringApplication.run(SoapServiceApplication::class.java, *args)
+
         }
     }
 }
