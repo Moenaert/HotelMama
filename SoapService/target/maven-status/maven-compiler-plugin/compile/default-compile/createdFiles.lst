@@ -1,0 +1,13 @@
+com\distributedapplications\soapservice\GetTodoRequest.class
+com\distributedapplications\soapservice\Todo.class
+generated\sources\jaxb2\GetTodoRequest.class
+generated\sources\jaxb2\Todo.class
+com\distributedapplications\soapservice\GetTodoResponse.class
+com\distributed\applications\soapservice\TodoRepository.class
+com\distributed\applications\soapservice\SoapServiceApplication.class
+com\distributed\applications\soapservice\WebServiceConfig.class
+com\distributed\applications\soapservice\TodoEndpoint.class
+generated\sources\jaxb2\ObjectFactory.class
+com\distributedapplications\soapservice\ObjectFactory.class
+com\distributedapplications\soapservice\package-info.class
+generated\sources\jaxb2\GetTodoResponse.class

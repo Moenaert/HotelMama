@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SoapService/SoapService.iml" filepath="$PROJECT_DIR$/SoapService/SoapService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TodoWebApp/TodoWebApp.iml" filepath="$PROJECT_DIR$/TodoWebApp/TodoWebApp.iml" />
+    </modules>
+  </component>
+</project>

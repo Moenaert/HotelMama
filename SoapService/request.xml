@@ -1,0 +1,8 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gs="http://distributedapplications.com/soapservice">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <gs:GetTodoRequest>
+         <gs:id>1</gs:id>
+      </gs:GetTodoRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
