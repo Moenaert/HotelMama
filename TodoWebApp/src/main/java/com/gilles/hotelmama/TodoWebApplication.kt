@@ -50,9 +50,8 @@ open class TodoWebApplication {
             try {
                 transaction.begin()
                 val dalia = UsersEntity();
-                dalia.id = 6;
+
                 dalia.name = "Potato";
-                dalia.supervisorId = 1;
                 entityManager.persist(dalia);
 
 //            dalia.setId(6);

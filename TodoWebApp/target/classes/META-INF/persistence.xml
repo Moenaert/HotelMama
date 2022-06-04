@@ -5,7 +5,6 @@
              version="2.2">
     <persistence-unit name="default">
 
-        <class>entity.MtMJoinTableEntity</class>
         <class>entity.SupervisorEntity</class>
         <class>entity.ToDoEntity</class>
         <class>entity.UsersEntity</class>
