@@ -1,46 +1,26 @@
 package com.gilles.hotelmama
 
-import org.springframework.web.bind.annotation.SessionAttributes
-import com.gilles.hotelmama.AppConfig
-import org.springframework.jms.annotation.JmsListener
-import com.gilles.hotelmama.jms.JmsMessage
-import org.apache.http.impl.client.DefaultHttpClient
-import org.apache.http.entity.StringEntity
-import org.apache.http.client.methods.HttpPost
-import org.apache.http.util.EntityUtils
-import kotlin.jvm.JvmStatic
-import com.gilles.hotelmama.soap.client.SoapWebServiceClient
-import org.springframework.web.servlet.HandlerInterceptor
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
-import org.springframework.web.servlet.ModelAndView
-import com.gilles.hotelmama.TodoService
-import org.springframework.scheduling.annotation.EnableScheduling
-import org.springframework.scheduling.annotation.Scheduled
-import org.springframework.beans.factory.annotation.Autowired
-import com.gilles.hotelmama.SessionTimer
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestParam
-import com.gilles.hotelmama.LoginService
-import org.springframework.web.bind.annotation.RestController
-import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.jms.annotation.EnableJms
-import javax.jms.ConnectionFactory
-import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer
-import org.springframework.jms.config.JmsListenerContainerFactory
-import org.springframework.jms.config.DefaultJmsListenerContainerFactory
-import org.springframework.context.ConfigurableApplicationContext
-import org.springframework.boot.SpringApplication
 import com.gilles.hotelmama.TodoWebApplication
+import com.gilles.hotelmama.jms.JmsMessage
+import entity.UsersEntity
+import org.springframework.boot.SpringApplication
+import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer
 import org.springframework.context.annotation.Bean
+import org.springframework.jms.annotation.EnableJms
+import org.springframework.jms.config.DefaultJmsListenerContainerFactory
+import org.springframework.jms.config.JmsListenerContainerFactory
 import org.springframework.jms.core.JmsTemplate
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter
 import org.springframework.jms.support.converter.MessageConverter
 import org.springframework.jms.support.converter.MessageType
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry
-import java.sql.Connection
+import javax.jms.ConnectionFactory
+import javax.persistence.Persistence
+import javax.persistence.TypedQuery
+
+
+
+
 
 @SpringBootApplication
 @EnableJms
@@ -63,6 +43,40 @@ open class TodoWebApplication {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
+
+            val entityManagerFactory = Persistence.createEntityManagerFactory("default")
+            val entityManager = entityManagerFactory.createEntityManager()
+            val transaction = entityManager.transaction
+            try {
+                transaction.begin()
+                val dalia = UsersEntity();
+                dalia.id = 6;
+                dalia.name = "Potato";
+                dalia.supervisorId = 1;
+                entityManager.persist(dalia);
+
+//            dalia.setId(6);
+//            dalia.setFirstName("Dalia");
+//            dalia.setLastName("Abo Sheasha");
+//            entityManager.persist(dalia);
+//                val empByDeptQuery: TypedQuery<Employee> =
+//                    entityManager.createNamedQuery("Employee.byDept", Employee::class.java)
+//                empByDeptQuery.setParameter(1, "Java Advocacy")
+//                for (employee in empByDeptQuery.getResultList()) {
+//                    System.out.println(employee)
+//                }
+//                val countEmpByDept: Query =
+//                    entityManager.createNativeQuery("SELECT COUNT(*) FROM Employee INNER JOIN Department D on Employee.department_id = D.id WHERE D.name=:deptName")
+//                countEmpByDept.setParameter("deptName", "Java Advocacy")
+//                System.out.println("There are " + countEmpByDept.getSingleResult() + " Java Advocates.")
+                transaction.commit()
+            } finally {
+                if (transaction.isActive) {
+                    transaction.rollback()
+                }
+                entityManager.close()
+                entityManagerFactory.close()
+            }
 
             val context = SpringApplication.run(TodoWebApplication::class.java, *args)
             val jmsTemplate = context.getBean(JmsTemplate::class.java)
