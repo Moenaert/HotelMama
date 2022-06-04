@@ -1,7 +1,6 @@
 package entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -17,8 +16,6 @@ public class UsersEntity {
     @Basic
     @Column(name = "name", nullable = true, length = 45)
     private String name;
-    @OneToMany(mappedBy = "usersByUserId")
-    private Collection<MtMJoinTableEntity> mtMJoinTablesById;
     @ManyToOne
     @JoinColumn(name = "supervisorID", referencedColumnName = "id")
     private SupervisorEntity supervisorBySupervisorId;
@@ -58,14 +55,6 @@ public class UsersEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, supervisorId, name);
-    }
-
-    public Collection<MtMJoinTableEntity> getMtMJoinTablesById() {
-        return mtMJoinTablesById;
-    }
-
-    public void setMtMJoinTablesById(Collection<MtMJoinTableEntity> mtMJoinTablesById) {
-        this.mtMJoinTablesById = mtMJoinTablesById;
     }
 
     public SupervisorEntity getSupervisorBySupervisorId() {

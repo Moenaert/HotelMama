@@ -1,7 +1,6 @@
 package entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -14,8 +13,6 @@ public class ToDoEntity {
     @Basic
     @Column(name = "description", nullable = true, length = 45)
     private String description;
-    @OneToMany(mappedBy = "toDoByToDoId")
-    private Collection<MtMJoinTableEntity> mtMJoinTablesById;
 
     public int getId() {
         return id;
@@ -44,13 +41,5 @@ public class ToDoEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, description);
-    }
-
-    public Collection<MtMJoinTableEntity> getMtMJoinTablesById() {
-        return mtMJoinTablesById;
-    }
-
-    public void setMtMJoinTablesById(Collection<MtMJoinTableEntity> mtMJoinTablesById) {
-        this.mtMJoinTablesById = mtMJoinTablesById;
     }
 }
