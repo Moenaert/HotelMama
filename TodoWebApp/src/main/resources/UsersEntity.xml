@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="entity.UsersEntity">
+        <table name="Users" schema="sys" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="id" precision="-1"/>
+            </id>
+            <basic name="supervisorId">
+                <column name="supervisorID" nullable="false" precision="-1"/>
+            </basic>
+            <basic name="name">
+                <column name="name" nullable="false" length="45"/>
+            </basic>
+            <many-to-one name="supervisorBySupervisorId" optional="true" target-entity="entity.SupervisorEntity">
+                <join-column name="supervisorID" nullable="false" referenced-column-name="id"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+</entity-mappings>

@@ -1,7 +1,6 @@
 package entity;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "Users", schema = "sys", catalog = "")
@@ -9,7 +8,7 @@ public class UsersEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    private int id;
+    private Integer id;
     @Basic
     @Column(name = "supervisorID", nullable = true)
     private Integer supervisorId;
@@ -20,11 +19,11 @@ public class UsersEntity {
     @JoinColumn(name = "supervisorID", referencedColumnName = "id")
     private SupervisorEntity supervisorBySupervisorId;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -42,19 +41,6 @@ public class UsersEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UsersEntity that = (UsersEntity) o;
-        return id == that.id && Objects.equals(supervisorId, that.supervisorId) && Objects.equals(name, that.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, supervisorId, name);
     }
 
     public SupervisorEntity getSupervisorBySupervisorId() {

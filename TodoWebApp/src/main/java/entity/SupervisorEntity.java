@@ -1,7 +1,7 @@
 package entity;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.util.Collection;
 
 @Entity
 @Table(name = "supervisor", schema = "sys", catalog = "")
@@ -9,19 +9,21 @@ public class SupervisorEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    private int id;
+    private Integer id;
     @Basic
     @Column(name = "name", nullable = true, length = 45)
     private String name;
     @Basic
     @Column(name = "test", nullable = true, length = 45)
     private String test;
+    @OneToMany(mappedBy = "supervisorBySupervisorId")
+    private Collection<UsersEntity> usersById;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -41,16 +43,11 @@ public class SupervisorEntity {
         this.test = test;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        SupervisorEntity that = (SupervisorEntity) o;
-        return id == that.id && Objects.equals(name, that.name) && Objects.equals(test, that.test);
+    public Collection<UsersEntity> getUsersById() {
+        return usersById;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, test);
+    public void setUsersById(Collection<UsersEntity> usersById) {
+        this.usersById = usersById;
     }
 }
