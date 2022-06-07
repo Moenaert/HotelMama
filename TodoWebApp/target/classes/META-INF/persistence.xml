@@ -10,7 +10,7 @@
         <class>entity.UsersEntity</class>
 
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/sys"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
             <property name="hibernate.connection.user" value="root"/>
             <property name="hibernate.connection.password" value="1"/>

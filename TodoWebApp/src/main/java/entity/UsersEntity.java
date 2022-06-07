@@ -1,53 +1,45 @@
 package entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Users", schema = "sys", catalog = "")
 public class UsersEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id", nullable = false)
-    private Integer id;
+    @Column(name = "UsersID", nullable = false)
+    private Integer usersId;
     @Basic
-    @Column(name = "supervisorID", nullable = true)
-    private Integer supervisorId;
-    @Basic
-    @Column(name = "name", nullable = true, length = 45)
-    private String name;
-    @ManyToOne
-    @JoinColumn(name = "supervisorID", referencedColumnName = "id")
-    private SupervisorEntity supervisorBySupervisorId;
+    @Column(name = "username", nullable = true, length = 45)
+    private String username;
 
-    public Integer getId() {
-        return id;
+    public Integer getUsersId() {
+        return usersId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUsersId(Integer usersId) {
+        this.usersId = usersId;
     }
 
-    public Integer getSupervisorId() {
-        return supervisorId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setSupervisorId(Integer supervisorId) {
-        this.supervisorId = supervisorId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UsersEntity that = (UsersEntity) o;
+        return Objects.equals(usersId, that.usersId) && Objects.equals(username, that.username);
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public SupervisorEntity getSupervisorBySupervisorId() {
-        return supervisorBySupervisorId;
-    }
-
-    public void setSupervisorBySupervisorId(SupervisorEntity supervisorBySupervisorId) {
-        this.supervisorBySupervisorId = supervisorBySupervisorId;
+    @Override
+    public int hashCode() {
+        return Objects.hash(usersId, username);
     }
 }

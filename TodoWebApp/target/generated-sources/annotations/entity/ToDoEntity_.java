@@ -9,10 +9,10 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class ToDoEntity_ {
 
 	public static volatile SingularAttribute<ToDoEntity, String> description;
-	public static volatile SingularAttribute<ToDoEntity, Integer> id;
+	public static volatile SingularAttribute<ToDoEntity, Integer> toDoId;
 
 	public static final String DESCRIPTION = "description";
-	public static final String ID = "id";
+	public static final String TO_DO_ID = "toDoId";
 
 }
 

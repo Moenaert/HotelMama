@@ -1,38 +1,36 @@
 package entity;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "supervisor", schema = "sys", catalog = "")
 public class SupervisorEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id", nullable = false)
-    private Integer id;
+    @Column(name = "SupervisorID", nullable = false)
+    private Integer supervisorId;
     @Basic
-    @Column(name = "name", nullable = true, length = 45)
-    private String name;
+    @Column(name = "supervisorname", nullable = true, length = 45)
+    private String supervisorname;
     @Basic
     @Column(name = "test", nullable = true, length = 45)
     private String test;
-    @OneToMany(mappedBy = "supervisorBySupervisorId")
-    private Collection<UsersEntity> usersById;
 
-    public Integer getId() {
-        return id;
+    public Integer getSupervisorId() {
+        return supervisorId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setSupervisorId(Integer supervisorId) {
+        this.supervisorId = supervisorId;
     }
 
-    public String getName() {
-        return name;
+    public String getSupervisorname() {
+        return supervisorname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSupervisorname(String supervisorname) {
+        this.supervisorname = supervisorname;
     }
 
     public String getTest() {
@@ -43,11 +41,16 @@ public class SupervisorEntity {
         this.test = test;
     }
 
-    public Collection<UsersEntity> getUsersById() {
-        return usersById;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SupervisorEntity that = (SupervisorEntity) o;
+        return Objects.equals(supervisorId, that.supervisorId) && Objects.equals(supervisorname, that.supervisorname) && Objects.equals(test, that.test);
     }
 
-    public void setUsersById(Collection<UsersEntity> usersById) {
-        this.usersById = usersById;
+    @Override
+    public int hashCode() {
+        return Objects.hash(supervisorId, supervisorname, test);
     }
 }

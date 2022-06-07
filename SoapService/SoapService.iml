@@ -39,7 +39,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="SoapService" />
+          <factory-entry name="SoapService" value="23f8f80a-880c-4675-a960-ecf40f7cbe14" />
           <factory-entry name="noname-a.xml@0" value="23f8f80a-880c-4675-a960-ecf40f7cbe14" />
         </datasource-mapping>
         <naming-strategy-map />
