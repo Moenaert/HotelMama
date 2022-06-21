@@ -37,8 +37,8 @@ open class TodoWebApplication {
     @Bean
     open fun run(repository: EmployeeRepository): CommandLineRunner? {
         return CommandLineRunner { args: Array<String?>? ->
-            //insertFourEmployees(repository)
-            //System.out.println(repository.findAll())
+            insertFourEmployees(repository)
+            System.out.println(repository.findAll())
             System.out.println(repository.findEmployeesByLastNameContaining("Abo Sheasha"))
         }
     }
