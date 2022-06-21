@@ -70,6 +70,8 @@ class TodoController {
 
     @PostMapping(AppConfig.addTodoPageURL)
     fun addTodo(model: Model, @RequestParam description: String): String {
+        
+        println("TESTT")
         todoService!!.addTodo(model.getAttribute(AppConfig.nameModelAttributeName) as String, description, Date(), false)
         return "redirect:" + AppConfig.todoPageViewTemplate
     }
