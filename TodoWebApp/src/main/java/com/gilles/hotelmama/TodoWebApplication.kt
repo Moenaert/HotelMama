@@ -33,22 +33,7 @@ open class TodoWebApplication {
         converter.setTypeIdPropertyName("_type")
         return converter
     }
-
-    @Bean
-    open fun run(repository: EmployeeRepository): CommandLineRunner? {
-        return CommandLineRunner { args: Array<String?>? ->
-            insertFourEmployees(repository)
-            System.out.println(repository.findAll())
-            System.out.println(repository.findEmployeesByLastNameContaining("Abo Sheasha"))
-        }
-    }
-
-    fun insertFourEmployees(repository: EmployeeRepository) {
-        repository.save(Employee("Dalia", "Abo Sheasha"))
-        repository.save(Employee("Trisha", "Gee"))
-        repository.save(Employee("Helen", "Scott"))
-        repository.save(Employee("Mala", "Gupta"))
-    }
+    
 
     companion object {
         @JvmStatic

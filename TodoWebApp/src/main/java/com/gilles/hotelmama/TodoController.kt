@@ -34,6 +34,8 @@ import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.boot.SpringApplication
 import com.gilles.hotelmama.TodoWebApplication
 import com.gilles.hotelmama.jms.Receiver
+import org.springframework.boot.CommandLineRunner
+import org.springframework.context.annotation.Bean
 import org.springframework.jms.core.JmsTemplate
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -70,11 +72,21 @@ class TodoController {
 
     @PostMapping(AppConfig.addTodoPageURL)
     fun addTodo(model: Model, @RequestParam description: String): String {
-        
+
+        @Bean
+        fun apart(repository: EmployeeRepository): CommandLineRunner? {
+            return CommandLineRunner { args: Array<String?>? ->
+                repository.save(Employee("Peter", "Peterson"))
+                System.out.println(repository.findAll())
+                System.out.println(repository.findEmployeesByLastNameContaining("Abo Sheasha"))
+            }
+        }
+
         println("TESTT")
         todoService!!.addTodo(model.getAttribute(AppConfig.nameModelAttributeName) as String, description, Date(), false)
         return "redirect:" + AppConfig.todoPageViewTemplate
     }
+
 
     @GetMapping(AppConfig.deleteTodoURL)
     fun deleteTodo(model: Model?, @RequestParam id: Int): String {
