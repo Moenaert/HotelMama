@@ -93,7 +93,13 @@ class TodoController {
     @GetMapping(AppConfig.deleteTodoURL)
     fun deleteTodo(model: Model?, @RequestParam id: Int): String {
 
-        // TODO: 22/06/2022 Add other annotations
+        // TODO: 23/06/2022 Linking of user & todo in database
+        // how?
+        // We will need keys in both?
+        // Do you just add to lists?
+        
+        // TODO: 23/06/2022 Having an automatic supervisor for Gilles & Stefan
+
 
         println(todoService!!.TodoById(id)?.id)
         println("Ayyy"+ id)

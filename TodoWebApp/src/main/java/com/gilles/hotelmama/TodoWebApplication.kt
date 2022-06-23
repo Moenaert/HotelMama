@@ -1,6 +1,5 @@
 package com.gilles.hotelmama
 
-import com.gilles.hotelmama.TodoWebApplication
 import com.gilles.hotelmama.jms.JmsMessage
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.SpringApplication
@@ -14,7 +13,6 @@ import org.springframework.jms.core.JmsTemplate
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter
 import org.springframework.jms.support.converter.MessageConverter
 import org.springframework.jms.support.converter.MessageType
-import java.util.*
 import javax.jms.ConnectionFactory
 
 @SpringBootApplication
@@ -44,7 +42,7 @@ open class TodoWebApplication {
             val supervisor = Supervisor()
             supervisor.person= Person()
             supervisor.person.firstName = "Stefan"
-            supervisor.role = Role.Gardener
+            supervisor.role = Role.Overview
 
             repository2.save(supervisor)
 

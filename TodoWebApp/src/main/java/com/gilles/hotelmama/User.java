@@ -11,8 +11,8 @@ public class User {
     @GeneratedValue
     private Long id;
 
-    @Embedded
-    private Person person;
+    private String password;
+    private String name;
 
     public User() {
     }
@@ -32,4 +32,19 @@ public class User {
     }
 
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
