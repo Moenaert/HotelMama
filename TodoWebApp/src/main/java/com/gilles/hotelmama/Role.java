@@ -1,4 +1,4 @@
-package com.distributed.applications.soapservice;
+package com.gilles.hotelmama;
 
 public enum Role {
     Gardener,
