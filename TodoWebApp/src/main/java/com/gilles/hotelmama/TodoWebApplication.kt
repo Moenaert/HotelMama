@@ -36,9 +36,18 @@ open class TodoWebApplication {
     }
 
     @Bean
-    open fun run(repository: ToDoRepository): CommandLineRunner? {
+    open fun run(repository: ToDoRepository,repository2: SupervisorRepository): CommandLineRunner? {
         return CommandLineRunner { args: Array<String?>? ->
             repository.deleteAll()
+            repository2.deleteAll()
+
+            val supervisor = Supervisor()
+            supervisor.firstName = "Stefan"
+            supervisor.lastName = "Vanhille"
+            supervisor.role = Role.Gardener
+
+            repository2.save(supervisor)
+
         }
     }
 

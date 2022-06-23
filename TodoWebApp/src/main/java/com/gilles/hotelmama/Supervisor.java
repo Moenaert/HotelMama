@@ -1,6 +1,7 @@
 package com.gilles.hotelmama;
 
 import javax.persistence.*;
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,8 @@ public class Supervisor {
     private String firstName;
     private String lastName;
 
+    @Enumerated(EnumType.STRING)
+    public Role role;
 
     @OneToMany(targetEntity = User.class,
             cascade = CascadeType.ALL)
