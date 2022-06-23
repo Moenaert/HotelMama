@@ -55,6 +55,9 @@ class TodoController {
     @Autowired
     private val receiver: Receiver? = null
 
+    @Autowired
+    private val repository: ToDoRepository?=null
+
     @GetMapping(AppConfig.todoPageURL)
     fun showTodoPage(model: Model): String? {
         val user = model.getAttribute(AppConfig.nameModelAttributeName) as String
@@ -73,23 +76,22 @@ class TodoController {
     @PostMapping(AppConfig.addTodoPageURL)
     fun addTodo(model: Model, @RequestParam description: String): String {
 
-        @Bean
-        fun apart(repository: EmployeeRepository): CommandLineRunner? {
-            return CommandLineRunner { args: Array<String?>? ->
-                repository.save(Employee("Peter", "Peterson"))
-                System.out.println(repository.findAll())
-                System.out.println(repository.findEmployeesByLastNameContaining("Abo Sheasha"))
-            }
-        }
+        val intje: Int = todoService!!.addTodo(model.getAttribute(AppConfig.nameModelAttributeName) as String, description, Date(), false)
+        repository?.save(ToDoEntity(intje.toLong(),"TestingName", description,Date(),false))
 
-        println("TESTT")
-        todoService!!.addTodo(model.getAttribute(AppConfig.nameModelAttributeName) as String, description, Date(), false)
         return "redirect:" + AppConfig.todoPageViewTemplate
     }
 
 
     @GetMapping(AppConfig.deleteTodoURL)
     fun deleteTodo(model: Model?, @RequestParam id: Int): String {
+
+        // TODO: 22/06/2022 Add Temporal annotation in ToDoEntity
+        // TODO: 22/06/2022 Add other annotations
+
+        println(todoService!!.TodoById(id)?.id)
+        println("Ayyy"+ id)
+        repository?.deleteById(id.toLong())
         todoService!!.deleteTodo(id)
         return "redirect:" + AppConfig.todoPageViewTemplate
     }

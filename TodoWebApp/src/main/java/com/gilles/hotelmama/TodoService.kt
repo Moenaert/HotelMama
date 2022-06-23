@@ -51,8 +51,17 @@ class TodoService {
         return filteredTodos
     }
 
-    fun addTodo(name: String, description: String, targetDate: Date, isDone: Boolean) {
+    fun TodoById(idee:Int): Todo? {
+        for(todo in todos){
+            if(todo.id==idee) return todo
+        }
+        return null
+    }
+
+    fun addTodo(name: String, description: String, targetDate: Date, isDone: Boolean): Int {
         todos.add(Todo(++todoCount, name, description, targetDate, isDone))
+        println("todoCount" + todoCount)
+        return todoCount
     }
 
     fun deleteTodo(id: Int) {
