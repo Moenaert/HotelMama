@@ -58,18 +58,23 @@ class TodoController {
     @Autowired
     private val repository: ToDoRepository?=null
 
+
+
     @GetMapping(AppConfig.todoPageURL)
     fun showTodoPage(model: Model): String? {
+
         val user = model.getAttribute(AppConfig.nameModelAttributeName) as String
         model.addAttribute(AppConfig.todosModelAttributeName, todoService!!.filterTodos(user))
         model.addAttribute(AppConfig.todoCountModelAttributeName, todoService.todoCount)
         model.addAttribute(AppConfig.timerModelAttributeName, timer!!.sessionTime)
         model.addAttribute(AppConfig.messageModelAttributeName, receiver!!.message)
+
         return AppConfig.todoPageViewTemplate
     }
 
     @GetMapping(AppConfig.addTodoPageURL)
     fun showAddTodoPage(): String? {
+
         return AppConfig.addTodoViewTemplate
     }
 
@@ -77,8 +82,7 @@ class TodoController {
     fun addTodo(model: Model, @RequestParam description: String): String {
 
         val intje: Int = todoService!!.addTodo(model.getAttribute(AppConfig.nameModelAttributeName) as String, description, Date(), false)
-        repository?.save(ToDoEntity(intje.toLong(),"TestingName", description,Date(),false))
-
+        repository?.save(ToDoEntity(intje.toLong(),model.getAttribute(AppConfig.nameModelAttributeName) as String, description,Date(),false))
         return "redirect:" + AppConfig.todoPageViewTemplate
     }
 
@@ -87,7 +91,6 @@ class TodoController {
     fun deleteTodo(model: Model?, @RequestParam id: Int): String {
 
         // TODO: 22/06/2022 Add other annotations
-        // TODO: 23/06/2022 Add database retrieval at startup for recovery of previous todos
 
         println(todoService!!.TodoById(id)?.id)
         println("Ayyy"+ id)

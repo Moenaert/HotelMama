@@ -17,6 +17,7 @@ class LoginController {
     private val loginService: LoginService? = null
     @GetMapping(AppConfig.loginPageURL)
     fun showLoginPage(): String? {
+
         return AppConfig.loginPageViewTemplate
     }
 

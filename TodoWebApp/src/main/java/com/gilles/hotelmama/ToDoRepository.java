@@ -5,4 +5,6 @@ import java.util.List;
 
 public interface ToDoRepository extends CrudRepository<ToDoEntity, Long> {
 
+    ToDoEntity findByDescriptionContaining(String str);
+
 }
