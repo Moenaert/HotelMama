@@ -35,6 +35,13 @@ open class TodoWebApplication {
         return converter
     }
 
+    @Bean
+    open fun run(repository: ToDoRepository): CommandLineRunner? {
+        return CommandLineRunner { args: Array<String?>? ->
+            repository.deleteAll()
+        }
+    }
+
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {

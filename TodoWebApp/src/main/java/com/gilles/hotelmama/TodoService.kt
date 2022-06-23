@@ -67,7 +67,7 @@ class TodoService {
     fun deleteTodo(id: Int) {
         todos.removeIf { todo: Todo ->
             if (todo.id == id) {
-                --todoCount
+                //--todoCount
                 return@removeIf true
             }
             false

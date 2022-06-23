@@ -1,9 +1,6 @@
 package com.distributed.applications.soapservice;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Supervisor {
@@ -20,6 +17,9 @@ public class Supervisor {
     private Long id;
     private String firstName;
     private String lastName;
+
+    @Enumerated(EnumType.STRING)
+    private Role supervisorRole;
 
     public void setId(Long id) {
         this.id = id;

@@ -86,8 +86,8 @@ class TodoController {
     @GetMapping(AppConfig.deleteTodoURL)
     fun deleteTodo(model: Model?, @RequestParam id: Int): String {
 
-        // TODO: 22/06/2022 Add Temporal annotation in ToDoEntity
         // TODO: 22/06/2022 Add other annotations
+        // TODO: 23/06/2022 Add database retrieval at startup for recovery of previous todos
 
         println(todoService!!.TodoById(id)?.id)
         println("Ayyy"+ id)
