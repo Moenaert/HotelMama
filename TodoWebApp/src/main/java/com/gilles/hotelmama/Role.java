@@ -2,7 +2,7 @@ package com.gilles.hotelmama;
 
 public enum Role {
     Overview,
-    Planner,
+    Baker,
     Trainer,
     Tutor
 }

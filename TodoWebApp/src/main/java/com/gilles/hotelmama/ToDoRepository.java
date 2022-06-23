@@ -11,4 +11,6 @@ public interface ToDoRepository extends CrudRepository<ToDoEntity, Long> {
     @Query(value = "SELECT u.description FROM ToDoEntity u")
     List<String> findAllToDoes(Sort sort);
 
+    ToDoEntity findToDoEntityById(Long id);
+
 }

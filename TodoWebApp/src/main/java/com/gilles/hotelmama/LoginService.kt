@@ -10,12 +10,12 @@ class LoginService {
     private val repository: UserRepository?=null
     fun validateUser(user: String, password: String): Boolean {
 
-        var bool: Boolean=false
         for (x in repository!!.findAll()) {
-            bool = (user == x.name || user == x.name) && password == x.password
-            return bool
+            if (((user == x.name || user == x.name) && password == x.password)){
+                return true
+            }
         }
 
-        return bool
+        return false
     }
 }

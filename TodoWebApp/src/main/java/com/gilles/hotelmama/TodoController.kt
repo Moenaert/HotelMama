@@ -60,6 +60,8 @@ class TodoController {
     @Autowired
     private val repository: ToDoRepository?=null
 
+    @Autowired
+    private val repository2: UserRepository?=null
 
 
     @GetMapping(AppConfig.todoPageURL)
@@ -85,7 +87,14 @@ class TodoController {
     fun addTodo(model: Model, @RequestParam description: String): String {
 
         val intje: Int = todoService!!.addTodo(model.getAttribute(AppConfig.nameModelAttributeName) as String, description, Date(), false)
-        repository?.save(ToDoEntity(intje.toLong(),model.getAttribute(AppConfig.nameModelAttributeName) as String, description,Date(),false))
+        val todotje:ToDoEntity = ToDoEntity(intje.toLong(),model.getAttribute(AppConfig.nameModelAttributeName) as String, description,Date(),false)
+
+        repository2?.findUserByName(model.getAttribute(AppConfig.nameModelAttributeName) as String)?.toDos?.add(todotje )
+
+        todotje.users?.add(repository2?.findUserByName(model.getAttribute(AppConfig.nameModelAttributeName) as String))
+
+        repository?.save(todotje)
+
         return "redirect:" + AppConfig.todoPageViewTemplate
     }
 
@@ -93,16 +102,9 @@ class TodoController {
     @GetMapping(AppConfig.deleteTodoURL)
     fun deleteTodo(model: Model?, @RequestParam id: Int): String {
 
-        // TODO: 23/06/2022 Linking of user & todo in database
-        // how?
-        // We will need keys in both?
-        // Do you just add to lists?
-        
-        // TODO: 23/06/2022 Having an automatic supervisor for Gilles & Stefan
+        repository?.findToDoEntityById(id.toLong())?.users?.remove(repository2?.findUserByName(model?.getAttribute(AppConfig.nameModelAttributeName) as String))
+        repository2?.findUserByName(model?.getAttribute(AppConfig.nameModelAttributeName) as String)?.toDos?.remove(repository?.findToDoEntityById(id.toLong()))
 
-
-        println(todoService!!.TodoById(id)?.id)
-        println("Ayyy"+ id)
         repository?.deleteById(id.toLong())
         todoService!!.deleteTodo(id)
         return "redirect:" + AppConfig.todoPageViewTemplate

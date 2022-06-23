@@ -18,9 +18,9 @@ public class User {
     }
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "User_ToDos",
-            joinColumns = {@JoinColumn(name = "User_id")},
-            inverseJoinColumns = {@JoinColumn(name = "ToDo_id")})
+    @JoinTable(name = "user_to_dos",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "to_do_id")})
     private List<ToDoEntity> ToDos = new ArrayList<ToDoEntity>();
 
     public void setId(Long id) {
@@ -46,5 +46,13 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<ToDoEntity> getToDos() {
+        return ToDos;
+    }
+
+    public void setToDos(List<ToDoEntity> toDos) {
+        ToDos = toDos;
     }
 }
