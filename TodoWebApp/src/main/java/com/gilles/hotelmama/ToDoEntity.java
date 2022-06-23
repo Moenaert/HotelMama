@@ -16,6 +16,10 @@ public class ToDoEntity {
     private Long id;
     protected String name;
     protected String description;
+
+    //Depending on TemporalType here we can choose between:
+    //Time,Timestamp,Date
+    @Temporal(TemporalType.TIMESTAMP)
     protected Date targetDate;
     protected boolean isDone;
     public ToDoEntity() {
