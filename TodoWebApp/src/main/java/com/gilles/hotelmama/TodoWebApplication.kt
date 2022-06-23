@@ -42,9 +42,8 @@ open class TodoWebApplication {
             repository2.deleteAll()
 
             val supervisor = Supervisor()
-            supervisor.person=Person()
+            supervisor.person= Person()
             supervisor.person.firstName = "Stefan"
-            supervisor.person.lastName = "Vanhille"
             supervisor.role = Role.Gardener
 
             repository2.save(supervisor)

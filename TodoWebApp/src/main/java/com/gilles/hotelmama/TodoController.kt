@@ -34,8 +34,10 @@ import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.boot.SpringApplication
 import com.gilles.hotelmama.TodoWebApplication
 import com.gilles.hotelmama.jms.Receiver
+import net.bytebuddy.TypeCache
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Bean
+import org.springframework.data.domain.Sort
 import org.springframework.jms.core.JmsTemplate
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -63,6 +65,8 @@ class TodoController {
     @GetMapping(AppConfig.todoPageURL)
     fun showTodoPage(model: Model): String? {
 
+        println("Print")
+        println(repository?.findAllToDoes(Sort.by("name")))
         val user = model.getAttribute(AppConfig.nameModelAttributeName) as String
         model.addAttribute(AppConfig.todosModelAttributeName, todoService!!.filterTodos(user))
         model.addAttribute(AppConfig.todoCountModelAttributeName, todoService.todoCount)
@@ -74,7 +78,6 @@ class TodoController {
 
     @GetMapping(AppConfig.addTodoPageURL)
     fun showAddTodoPage(): String? {
-
         return AppConfig.addTodoViewTemplate
     }
 
