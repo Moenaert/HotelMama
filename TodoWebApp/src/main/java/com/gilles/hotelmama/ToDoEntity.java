@@ -5,7 +5,9 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="ToDoes")
@@ -22,6 +24,9 @@ public class ToDoEntity {
     @Temporal(TemporalType.TIMESTAMP)
     protected Date targetDate;
     protected boolean isDone;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "ToDos")
+    private List<User> Users = new ArrayList<>();
     public ToDoEntity() {
     }
 

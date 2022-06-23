@@ -1,24 +1,31 @@
 package com.gilles.hotelmama;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Employee {
+@Table(name = "User")
+public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
     private String firstName;
     private String lastName;
-    public Employee() {
+
+    public User() {
     }
 
-    public Employee(String firstName, String lastName) {
+    public User(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "User_ToDos",
+            joinColumns = {@JoinColumn(name = "User_id")},
+            inverseJoinColumns = {@JoinColumn(name = "ToDo_id")})
+    private List<ToDoEntity> ToDos = new ArrayList<ToDoEntity>();
 
     public void setId(Long id) {
         this.id = id;
@@ -46,7 +53,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
+        return "User{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
