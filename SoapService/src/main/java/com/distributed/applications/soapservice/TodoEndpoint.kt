@@ -20,7 +20,6 @@ class TodoEndpoint @Autowired constructor(private val todoRepository: TodoReposi
     fun getTodo(@RequestPayload request: GetTodoRequest): GetTodoResponse {
         val response = GetTodoResponse()
         response.todo = Todo()
-        println(request.id)
         val todofrombase: ToDoEntity? =todoRepository2?.findAll()?.last()
         response.todo.id= todofrombase?.id?.toInt()!!
         response.todo.description= todofrombase.description!!
