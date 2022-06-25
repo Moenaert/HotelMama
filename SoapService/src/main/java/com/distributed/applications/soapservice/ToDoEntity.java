@@ -1,10 +1,7 @@
-package com.gilles.hotelmama;
+package com.distributed.applications.soapservice;
 
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -84,5 +81,16 @@ public class ToDoEntity {
 
     public void setUsers(List<User> users) {
         Users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "ToDoEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", targetDate=" + targetDate +
+                ", isDone=" + isDone +
+                '}';
     }
 }

@@ -1,4 +1,4 @@
-package com.gilles.hotelmama;
+package com.distributed.applications.soapservice;
 
 import javax.persistence.*;
 import java.util.ArrayList;

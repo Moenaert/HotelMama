@@ -1,4 +1,4 @@
-package com.gilles.hotelmama;
+package com.distributed.applications.soapservice;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.repository.CrudRepository;

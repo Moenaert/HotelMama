@@ -9,7 +9,7 @@
 package generated.sources.jaxb2;
 
 import javax.xml.bind.annotation.*;
-import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.Date;
 
 
 /**
@@ -52,7 +52,7 @@ public class Todo {
     protected String description;
     @XmlElement(required = true)
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar targetDate;
+    protected Date targetDate;
     protected boolean isDone;
 
     /**
@@ -124,10 +124,10 @@ public class Todo {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link Date }
      *     
      */
-    public XMLGregorianCalendar getTargetDate() {
+    public Date getTargetDate() {
         return targetDate;
     }
 
@@ -136,10 +136,10 @@ public class Todo {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link Date }
      *     
      */
-    public void setTargetDate(XMLGregorianCalendar value) {
+    public void setTargetDate(Date value) {
         this.targetDate = value;
     }
 
