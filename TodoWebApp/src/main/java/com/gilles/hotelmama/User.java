@@ -2,7 +2,9 @@ package com.gilles.hotelmama;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "User")
@@ -22,6 +24,17 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "to_do_id")})
     private List<ToDoEntity> ToDos = new ArrayList<ToDoEntity>();
+
+    public Collection<UserToDosDos> getKeys() {
+        return keys;
+    }
+
+    public void setKeys(Collection<UserToDosDos> keys) {
+        this.keys = keys;
+    }
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Collection<UserToDosDos> keys = new ArrayList<>();
 
     public void setId(Long id) {
         this.id = id;

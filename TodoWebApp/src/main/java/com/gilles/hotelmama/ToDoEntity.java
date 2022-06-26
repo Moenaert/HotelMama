@@ -4,9 +4,8 @@ package com.gilles.hotelmama;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import javax.xml.bind.annotation.XmlTransient;
+import java.util.*;
 
 @Entity
 @Table(name="to_does")
@@ -24,8 +23,23 @@ public class ToDoEntity {
     protected Date targetDate;
     protected boolean isDone;
 
+    @Transient //Prevents the mapping of a JavaBean property/type to Database representation.
+    @XmlTransient //Prevents the mapping of a JavaBean property/type to XML representation.
+    protected boolean ignore_Dummy;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "ToDos")
     private List<User> Users = new ArrayList<>();
+
+    public Collection<UserToDosDos> getKeys() {
+        return keys;
+    }
+
+    public void setKeys(Collection<UserToDosDos> keys) {
+        this.keys = keys;
+    }
+
+    @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL)
+    private Collection<UserToDosDos> keys=new ArrayList<>();
     public ToDoEntity() {
     }
 
@@ -67,6 +81,14 @@ public class ToDoEntity {
 
     public void setTargetDate(Date targetDate) {
         this.targetDate = targetDate;
+    }
+
+    public boolean isIgnore_Dummy() {
+        return ignore_Dummy;
+    }
+
+    public void setIgnore_Dummy(boolean ignore_Dummy) {
+        this.ignore_Dummy = ignore_Dummy;
     }
 
     public boolean isDone() {
