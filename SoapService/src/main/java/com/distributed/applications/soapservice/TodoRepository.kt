@@ -23,7 +23,15 @@ class TodoRepository {
         return todos[id]
     }
 
+    fun insertTodo(todo: Todo,intje:Int) {
+        todos[intje]=todo
+    }
+
+    fun clearTodo(){
+        todos= HashMap()
+    }
+
     companion object {
-        private val todos: MutableMap<Int, Todo> = HashMap()
+        var todos: MutableMap<Int, Todo> = HashMap()
     }
 }

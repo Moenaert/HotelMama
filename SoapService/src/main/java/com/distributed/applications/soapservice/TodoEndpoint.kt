@@ -19,14 +19,22 @@ class TodoEndpoint @Autowired constructor(private val todoRepository: TodoReposi
     @ResponsePayload
     fun getTodo(@RequestPayload request: GetTodoRequest): GetTodoResponse {
         val response = GetTodoResponse()
-        response.todo = Todo()
-        val todofrombase: ToDoEntity? =todoRepository2?.findAll()?.last()
-        response.todo.id= todofrombase?.id?.toInt()!!
-        response.todo.description= todofrombase.description!!
-        response.todo.user= todofrombase?.name!!
-        response.todo.targetDate= todofrombase?.targetDate!!
-//        todoRepository2?.findById(request.id.toLong())
+        parseData()
+        response.todo =todoRepository.findTodo(request.id)
         return response
+    }
+
+    fun parseData(){
+//        todoRepository.clearTodo()
+
+        for(e:ToDoEntity in todoRepository2?.findAll()!!)     {
+            var todo = Todo()
+            todo.id= e.id.toInt()
+            todo.description= e.description
+            todo.user= e.name
+            todo.targetDate= e.targetDate
+            todoRepository.insertTodo(todo,todo.id)
+        }
     }
 
     companion object {
