@@ -20,6 +20,10 @@ class UserToDosDos {
 
     int combinationTable;
 
+    //todo amount of todos per user
+    //todo only show random to do of user
+
+
     public com.gilles.hotelmama.UserToDosKey getUserToDosKey() {
         return UserToDosKey;
     }

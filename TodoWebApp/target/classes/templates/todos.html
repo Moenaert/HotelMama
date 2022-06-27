@@ -15,7 +15,7 @@
 <div class="container">
   <div class="text-success" >Welcome  <t th:text="${name}"></t> </div>
   <table class="table table-striped caption-top">
-    <caption> A total of <b th:text="${todoCount}"></b> tasks  </caption>
+    <caption> The to do count is <b th:text="${todoCount2}"></b> with a total of <b th:text="${todoCount}"></b> (completed) todos </caption>
 
     <thead>
     <tr>
@@ -37,8 +37,8 @@
   </table>
   <div>
     <a class="btn btn-success" href="/add-todo">Add</a>
-    <a class="btn btn-primary" href="/random-todo-rest">Random Unfinished To Do [RESTFul]</a>
-    <a class="btn btn-primary" href="/random-todo-soap">Random Unfinished Or Finished To Do [SOAP]</a>
+    <a class="btn btn-primary" href="/random-todo-rest">Random Unfinished To Do (User specific) [RESTFul]</a>
+    <a class="btn btn-primary" href="/random-todo-soap">Random Unfinished To Do (All Users) [SOAP]</a>
   </div>
 
   <t th:text="${message}"></t>

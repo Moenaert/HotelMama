@@ -17,6 +17,7 @@ object AppConfig {
     const val nameModelAttributeName = "name"
     const val todosModelAttributeName = "todos"
     const val todoCountModelAttributeName = "todoCount"
+    const val todoCountModelAttributeName2 = "todoCount2"
     const val timerModelAttributeName = "timer"
     const val messageModelAttributeName = "message"
 }

@@ -39,7 +39,8 @@ class TodoController {
         println(repository?.findAllToDoes(Sort.by("name")))
         val user = model.getAttribute(AppConfig.nameModelAttributeName) as String
         model.addAttribute(AppConfig.todosModelAttributeName, todoService!!.filterTodos(user))
-        model.addAttribute(AppConfig.todoCountModelAttributeName, todoService.todoCount2)
+        model.addAttribute(AppConfig.todoCountModelAttributeName2, todoService.todoCount2)
+        model.addAttribute(AppConfig.todoCountModelAttributeName, todoService.todoCount)
         model.addAttribute(AppConfig.timerModelAttributeName, timer!!.sessionTime)
         model.addAttribute(AppConfig.messageModelAttributeName, receiver!!.message)
 
