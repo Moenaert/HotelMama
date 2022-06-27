@@ -60,7 +60,7 @@ class TodoRestController {
         if (todoService!!.todoCount == 0) return "No Tasks to do!"
         if (todoService!!.todoCount == 1) return "You have only 1 task left!"
         val rand = Random()
-        return soapClient!!.postSOAPXML(rand.nextInt(1, todoService!!.todoCount))
+        return soapClient!!.postSOAPXML(rand.nextInt(1, todoService!!.todoCount2))
     }
 
     fun getRandomFromList(list: List<Todo?>?): Todo? {

@@ -43,6 +43,7 @@ import java.util.*
 @Service
 class TodoService {
     var todoCount = 0
+    var todoCount2= 0
     fun filterTodos(user: String): List<Todo> {
         val filteredTodos: MutableList<Todo> = ArrayList()
         for (todo in todos) {
@@ -60,6 +61,7 @@ class TodoService {
 
     fun addTodo(name: String, description: String, targetDate: Date, isDone: Boolean): Int {
         todos.add(Todo(++todoCount, name, description, targetDate, isDone))
+        todoCount2++
         println("todoCount" + todoCount)
         return todoCount
     }
@@ -68,6 +70,7 @@ class TodoService {
         todos.removeIf { todo: Todo ->
             if (todo.id == id) {
                 //--todoCount
+                todoCount2--
                 return@removeIf true
             }
             false

@@ -21,11 +21,13 @@ class TodoEndpoint @Autowired constructor(private val todoRepository: TodoReposi
         val response = GetTodoResponse()
         parseData()
         response.todo =todoRepository.findTodo(request.id)
+        println("Testing"+request.id)
         return response
     }
 
     fun parseData(){
-//        todoRepository.clearTodo()
+        todoRepository.clearTodo()
+        var idee = 0
 
         for(e:ToDoEntity in todoRepository2?.findAll()!!)     {
             var todo = Todo()
@@ -33,7 +35,8 @@ class TodoEndpoint @Autowired constructor(private val todoRepository: TodoReposi
             todo.description= e.description
             todo.user= e.name
             todo.targetDate= e.targetDate
-            todoRepository.insertTodo(todo,todo.id)
+            todoRepository.insertTodo(todo,idee)
+            idee++
         }
     }
 
